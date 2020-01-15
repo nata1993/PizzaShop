@@ -1,0 +1,11 @@
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.exe
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.deps.json
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.runtimeconfig.json
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.runtimeconfig.dev.json
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.dll
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\bin\Debug\netcoreapp3.1\PizzaShop.pdb
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\obj\Debug\netcoreapp3.1\PizzaShop.csprojAssemblyReference.cache
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\obj\Debug\netcoreapp3.1\PizzaShop.AssemblyInfoInputs.cache
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\obj\Debug\netcoreapp3.1\PizzaShop.AssemblyInfo.cs
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\obj\Debug\netcoreapp3.1\PizzaShop.dll
+C:\Users\Kebo\Desktop\Kool\programmeerimine\PizzaShop\obj\Debug\netcoreapp3.1\PizzaShop.pdb
