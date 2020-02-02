@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using static System.Console;
+using System.Linq;
 
 namespace PizzaShop
 {
@@ -61,6 +63,7 @@ namespace PizzaShop
     {
         readonly List<StandartPizza> menu;
         public List<StandartPizza> Menu { get { return menu; } set { } }
+
         public PizzaMenu()
         {
             menu = new List<StandartPizza>();
@@ -110,73 +113,205 @@ namespace PizzaShop
                 WriteLine($"   - {pizza.Flavor1}");
                 WriteLine($"   - {pizza.Flavor2}");
                 WriteLine($"   - {pizza.Flavor3}");
-                WriteLine($"   - {pizza.Flavor4}\n");
+                WriteLine($"   - {pizza.Flavor4}");
+                WriteLine("   - Thick/thin dough\n");
             }
-            WriteLine("You can add aditional flavors too if you want.");
+            //WriteLine("You can add aditional flavors too if you want.");
         }
     }
 
     class ShoppingCart
     {
-        readonly PizzaMenu pizzaMenu = new PizzaMenu();
+        protected PizzaMenu pizzaMenu;
         readonly List<string> shoppingCart = new List<string>();
+        protected int pizzaCount;
+        protected double totalCost;
+        public PizzaMenu PizzaMenu { get { return pizzaMenu; } set { } }
+        //public int PizzaCount { get { return pizzaCount; } set { } }
 
-        public void StandartPizzaShoppingCart(string choise)
+        public void StandardPizzaShoppingCart(string choise)
         {
-            WriteLine($"You have added {choise} to your shopping cart:\n");
+            pizzaMenu = new PizzaMenu();
+            pizzaCount++;
+            switch (choise)
+            {
+                case "1":
+                    WriteLine($"You have added Mozzarella to your shopping cart:\n");
+                    break;
+                case "2":
+                    WriteLine($"You have added Hawaii to your shopping cart:\n");
+                    break;
+                case "3":
+                    WriteLine($"You have added Shotgun to your shopping cart:\n");
+                    break;
+                case "4":
+                    WriteLine($"You have added Chippolino to your shopping cart:\n");
+                    break;
+                case "5":
+                    WriteLine($"You have added Americano to your shopping cart:\n");
+                    break;
+                case "mozzarella":
+                    WriteLine($"You have added Mozzarella to your shopping cart:\n");
+                    break;
+                case "hawaii":
+                    WriteLine($"You have added Hawaii to your shopping cart:\n");
+                    break;
+                case "shotgun":
+                    WriteLine($"You have added Shotgun to your shopping cart:\n");
+                    break;
+                case "chippolino":
+                    WriteLine($"You have added Chippolino to your shopping cart:\n");
+                    break;
+                case "americano":
+                    WriteLine($"You have added Americano to your shopping cart:\n");
+                    break;
+            }
 
-            if (choise == $"{Pizza.Mozzarella}".ToLower())
+            if (choise.Contains($"{Pizza.Mozzarella}".ToLower()) || choise == "1")
             {
                 shoppingCart.Add(pizzaMenu.Menu[0].Name + " pizza:");
                 shoppingCart.Add("   - " + pizzaMenu.Menu[0].Price.ToString() + " €");
+                totalCost += PizzaMenu.Menu[0].Price;
                 shoppingCart.Add("   - " + pizzaMenu.Menu[0].Flavor1);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[0].Flavor2);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[0].Flavor3);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[0].Flavor4);
             }
-            else if (choise == $"{Pizza.Hawaii}".ToLower())
+            else if (choise.Contains($"{Pizza.Hawaii}".ToLower()) || choise == "2")
             {
                 shoppingCart.Add(pizzaMenu.Menu[1].Name + " pizza:");
                 shoppingCart.Add("   - " + pizzaMenu.Menu[1].Price.ToString() + " €");
+                totalCost += PizzaMenu.Menu[1].Price;
                 shoppingCart.Add("   - " + pizzaMenu.Menu[1].Flavor1);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[1].Flavor2);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[1].Flavor3);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[1].Flavor4);
             }
-            else if (choise == $"{Pizza.Shotgun}".ToLower())
+            else if (choise.Contains($"{Pizza.Shotgun}".ToLower()) || choise == "3")
             {
                 shoppingCart.Add(pizzaMenu.Menu[2].Name + " pizza:");
                 shoppingCart.Add("   - " + pizzaMenu.Menu[2].Price.ToString() + " €");
+                totalCost += PizzaMenu.Menu[2].Price;
                 shoppingCart.Add("   - " + pizzaMenu.Menu[2].Flavor1);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[2].Flavor2);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[2].Flavor3);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[2].Flavor4);
             }
-            else if (choise == $"{Pizza.Chippolino}".ToLower())
+            else if (choise.Contains($"{Pizza.Chippolino}".ToLower()) || choise == "4")
             {
                 shoppingCart.Add(pizzaMenu.Menu[3].Name + " pizza:");
                 shoppingCart.Add("   - " + pizzaMenu.Menu[3].Price.ToString() + " €");
+                totalCost += PizzaMenu.Menu[3].Price;
                 shoppingCart.Add("   - " + pizzaMenu.Menu[3].Flavor1);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[3].Flavor2);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[3].Flavor3);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[3].Flavor4);
             }
-            else if (choise == $"{Pizza.Americano}".ToLower())
+            else if (choise.Contains($"{Pizza.Americano}".ToLower()) || choise == "5")
             {
                 shoppingCart.Add(pizzaMenu.Menu[4].Name + " pizza:");
                 shoppingCart.Add("   - " + pizzaMenu.Menu[4].Price.ToString() + " €");
+                totalCost += PizzaMenu.Menu[4].Price;
                 shoppingCart.Add("   - " + pizzaMenu.Menu[4].Flavor1);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[4].Flavor2);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[4].Flavor3);
                 shoppingCart.Add("   - " + pizzaMenu.Menu[4].Flavor4);
             }
         }
+        public void StandardPizzaDough(string choise)
+        {
+            if(choise.Contains("thin"))
+            {
+                shoppingCart.Add($"   - {Dough.Thin} dough");
+            }
+
+            else if (choise.Contains("thick"))
+            {
+                shoppingCart.Add($"   - {Dough.Thick} dough");
+            }
+        }
+        protected void RemoveDough(string doughChoise)
+        {
+            if (doughChoise.Contains("thin"))
+            {
+                shoppingCart.Remove($"   - {Dough.Thin} dough");
+            }
+
+            else if (doughChoise.Contains("thick"))
+            {
+                shoppingCart.Remove($"   - {Dough.Thick} dough");
+            }
+        }
+        public void EmptyStandardPizzaShoppingCart(string choise, string doughChoise)
+        {
+            if (choise == $"{Pizza.Mozzarella}".ToLower() || choise == "1")
+            {
+                shoppingCart.Remove($"{pizzaMenu.Menu[0].Name} pizza:");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Price.ToString()} €");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor1}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor2}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor3}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor4}");
+                RemoveDough(doughChoise);
+            }
+            else if (choise == $"{Pizza.Hawaii}".ToLower() || choise == "2")
+            {
+                shoppingCart.Remove(pizzaMenu.Menu[1].Name + " pizza:");
+                shoppingCart.Remove("   - " + pizzaMenu.Menu[1].Price.ToString() + " €");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor1}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor2}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor3}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor4}");
+                RemoveDough(doughChoise);
+            }
+            else if (choise == $"{Pizza.Shotgun}".ToLower() || choise == "3")
+            {
+                shoppingCart.Remove(pizzaMenu.Menu[2].Name + " pizza:");
+                shoppingCart.Remove("   - " + pizzaMenu.Menu[2].Price.ToString() + " €");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor1}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor2}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor3}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor4}");
+                RemoveDough(doughChoise);
+            }
+            else if (choise == $"{Pizza.Chippolino}".ToLower() || choise == "4")
+            {
+                shoppingCart.Remove(pizzaMenu.Menu[3].Name + " pizza:");
+                shoppingCart.Remove("   - " + pizzaMenu.Menu[3].Price.ToString() + " €");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor1}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor2}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor3}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor4}");
+                RemoveDough(doughChoise);
+            }
+            else if (choise == $"{Pizza.Americano}".ToLower() || choise == "5")
+            {
+                shoppingCart.Remove(pizzaMenu.Menu[4].Name + " pizza:");
+                shoppingCart.Remove("   - " + pizzaMenu.Menu[4].Price.ToString() + " €");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor1}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor2}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor3}");
+                shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor4}");
+                RemoveDough(doughChoise);
+            }
+        }
 
         public void PrintShoppingCart()
         {
-            foreach (string item in shoppingCart)
+            if (!shoppingCart.Any())
             {
-                WriteLine($"{item}");
+                WriteLine("Your shopping cart is empty");
+            }
+
+            else
+            {
+                WriteLine("Shopping cart:");
+                foreach (var item in shoppingCart)
+                {
+                    WriteLine($"{item}");
+                }
+                WriteLine($"\nTotal pizzas: {pizzaCount}");
+                WriteLine($"Total cost: {totalCost} €");
             }
         }
     }
@@ -185,42 +320,121 @@ namespace PizzaShop
     {
         static void Main()
         {
+            OutputEncoding = Encoding.UTF8;
             PizzaMenu pizzaMenu = new PizzaMenu();
             ShoppingCart shoppingCart = new ShoppingCart();
-
             string firstUserChoise;
-            string pizzaChoise;
+            string secondUserChoise;
+            string doughUserChoise;
             string thirdUserChoise;
+
             WriteLine("Hello! Welcome to the PitsaKiosk!\n");
             WriteLine("Menu:");
             pizzaMenu.PrintMenu();
+            shoppingCart.PrintShoppingCart();
             while (true)
             {
                 WriteLine("\nMake your choise:");
-                WriteLine("add = add pizza | own = make your own pizza | delete = delete from cart | buy = checkout your order");
+                WriteLine("add = add pizza | own = make your own pizza | exit = leave PitsaKiosk...");
                 firstUserChoise = ReadLine().ToLower();
 
                 if (firstUserChoise == "add")
                 {
                     Clear();
                     pizzaMenu.PrintMenu();
-                    Write("Choose your pizza: ");
-                    pizzaChoise = ReadLine().ToLower();
+                    Write("Did not find what you wanted? exit = exit shop. Found? Then choose your pizza: ");
+                    var pizzaChoise = ReadLine().ToLower();
+                    if( pizzaChoise == "exit")
+                    {
+                        Exit();
+                        break;
+                    }
                     Clear();
-                    shoppingCart.StandartPizzaShoppingCart(pizzaChoise);
+                    shoppingCart.StandardPizzaShoppingCart(pizzaChoise);
                     shoppingCart.PrintShoppingCart();
+                    WriteLine("\nWhat type of dough you want - thick or thin?: ");
+                    doughUserChoise = ReadLine().ToLower();
+                    shoppingCart.StandardPizzaDough(doughUserChoise);
                     WriteLine("\nCheckout?");
                     WriteLine("Yes = y | No = n");
-                    thirdUserChoise = ReadLine().ToLower();
-                    if (thirdUserChoise == "y")
+                    secondUserChoise = ReadLine().ToLower();
+                    if (secondUserChoise == "y")
                     {
                         Clear();
                         WriteLine("Your order is being prepared:\n");
                         shoppingCart.PrintShoppingCart();
                         break;
                     }
+                    else if (secondUserChoise == "n")
+                    {
+                        WriteLine("Want to add another pizza or change your order all together?");
+                        WriteLine("add = add another pizza || delete = change your order");
+                        thirdUserChoise = ReadLine().ToLower();
+
+                        if (thirdUserChoise == "add")
+                        {
+                            Clear();
+                            pizzaMenu.PrintMenu();
+                            WriteLine("Pizza in the shopping cart:");
+                            shoppingCart.PrintShoppingCart();
+                            WriteLine("\nAdd another pizza of your choise: ");
+                            var pizzaAnotherChoise = ReadLine().ToLower();
+                            shoppingCart.StandardPizzaShoppingCart(pizzaAnotherChoise);
+                            WriteLine("What type of dough you want - thick or thin?: ");
+                            doughUserChoise = ReadLine();
+                            shoppingCart.StandardPizzaDough(doughUserChoise);
+                            Clear();
+                            shoppingCart.PrintShoppingCart();
+                            WriteLine("\nCheckout?");
+                            WriteLine("Yes = y | No = n");
+                            secondUserChoise = ReadLine().ToLower();
+                            if (secondUserChoise == "y")
+                            {
+                                Clear();
+                                WriteLine("Your order is being prepared:\n");
+                                shoppingCart.PrintShoppingCart();
+                                break;
+                            }
+                        }
+
+                        else if (thirdUserChoise.Contains("del"))
+                        {
+                            Clear();
+                            WriteLine("Your order is:");
+                            shoppingCart.PrintShoppingCart();
+                            WriteLine("\nChoose which order to delete:");
+                            var deletePizzaChoise = ReadLine().ToLower();
+                            shoppingCart.EmptyStandardPizzaShoppingCart(deletePizzaChoise, doughUserChoise);
+                            Clear();
+                            shoppingCart.PrintShoppingCart();
+                            WriteLine("\nCheckout?");
+                            WriteLine("Yes = y | No = n");
+                            secondUserChoise = ReadLine().ToLower();
+                            if (secondUserChoise == "y")
+                            {
+                                Clear();
+                                WriteLine("Your order is being prepared:\n");
+                                shoppingCart.PrintShoppingCart();
+                                break;
+                            }
+                        }
+                    }
                 }
-                shoppingCart.PrintShoppingCart();
+                else if (firstUserChoise == "own")
+                {
+
+                }
+                else if (firstUserChoise == "exit")
+                {
+                    Exit();
+                    break;
+                }
+            }
+
+            static void Exit()
+            {
+                Clear();
+                WriteLine("Good bye and have a nice day!");
             }
         }
     }
