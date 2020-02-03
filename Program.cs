@@ -253,6 +253,8 @@ namespace PizzaShop
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor3}");
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[0].Flavor4}");
                 RemoveDough(doughChoise);
+                pizzaCount--;
+                totalCost -= pizzaMenu.Menu[0].Price;
             }
             else if (choise == $"{Pizza.Hawaii}".ToLower() || choise == "2")
             {
@@ -263,6 +265,8 @@ namespace PizzaShop
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor3}");
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[1].Flavor4}");
                 RemoveDough(doughChoise);
+                pizzaCount--;
+                totalCost -= pizzaMenu.Menu[1].Price;
             }
             else if (choise == $"{Pizza.Shotgun}".ToLower() || choise == "3")
             {
@@ -273,6 +277,8 @@ namespace PizzaShop
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor3}");
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[2].Flavor4}");
                 RemoveDough(doughChoise);
+                pizzaCount--;
+                totalCost -= pizzaMenu.Menu[2].Price;
             }
             else if (choise == $"{Pizza.Chippolino}".ToLower() || choise == "4")
             {
@@ -283,6 +289,8 @@ namespace PizzaShop
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor3}");
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[3].Flavor4}");
                 RemoveDough(doughChoise);
+                pizzaCount--;
+                totalCost -= pizzaMenu.Menu[3].Price;
             }
             else if (choise == $"{Pizza.Americano}".ToLower() || choise == "5")
             {
@@ -293,6 +301,8 @@ namespace PizzaShop
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor3}");
                 shoppingCart.Remove($"   - {pizzaMenu.Menu[4].Flavor4}");
                 RemoveDough(doughChoise);
+                pizzaCount--;
+                totalCost -= pizzaMenu.Menu[4].Price;
             }
         }
 
@@ -311,7 +321,7 @@ namespace PizzaShop
                     WriteLine($"{item}");
                 }
                 WriteLine($"\nTotal pizzas: {pizzaCount}");
-                WriteLine($"Total cost: {totalCost} €");
+                WriteLine($"Total cost: {Math.Round(totalCost, 2)} €");
             }
         }
     }
@@ -367,6 +377,7 @@ namespace PizzaShop
                     }
                     else if (secondUserChoise == "n")
                     {
+                        Start:
                         WriteLine("Want to add another pizza or change your order all together?");
                         WriteLine("add = add another pizza || delete = change your order");
                         thirdUserChoise = ReadLine().ToLower();
@@ -394,6 +405,11 @@ namespace PizzaShop
                                 WriteLine("Your order is being prepared:\n");
                                 shoppingCart.PrintShoppingCart();
                                 break;
+                            }
+
+                            if (secondUserChoise == "n")
+                            {
+                                goto Start;
                             }
                         }
 
